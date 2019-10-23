@@ -1,5 +1,7 @@
 package com.ccfraser.gradle
 
+import java.io.File
+
 open class RunServerAllowIpTask : BaseWebpackTask() {
     init {
         description = "Same as RunServerTask but allows other PCs to navigate to this PC and view the webapp " +
@@ -9,14 +11,14 @@ open class RunServerAllowIpTask : BaseWebpackTask() {
 
     override fun exec() {
         if (settings.production) {
-            commandLine("${webpackBinDirectory.get()}/webpack-dev-server", "--open", "--host", "0.0.0.0",
+            commandLine("${webpackBinDirectory.get()}${File.separator}webpack-dev-server", "--open", "--host", "0.0.0.0",
                         "-p", "--config", webpackProdConfigFile.get().toString())
         } else {
             if (settings.webpackDevServerHotReload) {
-                commandLine("${webpackBinDirectory.get()}/webpack-dev-server", "--hot", "--open", "--host", "0.0.0.0",
+                commandLine("${webpackBinDirectory.get()}${File.separator}webpack-dev-server", "--hot", "--open", "--host", "0.0.0.0",
                         "--config", webpackDevConfigFile.get().toString())
             } else {
-                commandLine("${webpackBinDirectory.get()}/webpack-dev-server", "--open", "--host", "0.0.0.0",
+                commandLine("${webpackBinDirectory.get()}${File.separator}webpack-dev-server", "--open", "--host", "0.0.0.0",
                         "--config", webpackDevConfigFile.get().toString())
             }
         }

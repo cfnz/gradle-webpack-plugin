@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "com.ccfraser.gradle"
-version = "0.1"
+version = "0.2"
 description = "A gradle plugin to help with builds related to webpack to try and reduce boilerplate code in build files."
 
 repositories {
@@ -77,7 +77,7 @@ bintray {
 
         pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
             // Mandatory fields
-            repo = project.parent?.name
+            repo = project.name
             name = "${project.group}:${project.name}"
             setLicenses("MPL-2.0")
             vcsUrl = "https://github.com/cfnz/gradle-webpack-plugin"
@@ -91,5 +91,7 @@ bintray {
             setLabels("kotlin", "webpack", "material-ui", "react")
         })
         setPublications(publicationName)
+    } else {
+        println("Could not find local.properties file")
     }
 }

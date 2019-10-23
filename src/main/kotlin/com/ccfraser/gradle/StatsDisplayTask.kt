@@ -12,16 +12,16 @@ open class StatsDisplayTask : BaseWebpackTask() {
     }
 
     @InputFile
-    val statsFile = settings.statsDirTemplate.map { File(settings.convert(it) + "/stats.json") }
+    val statsFile = settings.statsDirTemplate.map { File(settings.convert(it) + "${File.separator}stats.json") }
 
     @InputDirectory
     val distributionDirectory = settings.distributionDirTemplate.map { File(settings.convert(it)) }
 
     @OutputFile
-    val reportFile = settings.statsDirTemplate.map { File(settings.convert(it) + "/bundle-stats-report.html") }
+    val reportFile = settings.statsDirTemplate.map { File(settings.convert(it) + "${File.separator}bundle-stats-report.html") }
 
     override fun exec() {
-        commandLine("${webpackBinDirectory.get()}/webpack-bundle-analyzer", statsFile.get().toString(),
+        commandLine("${webpackBinDirectory.get()}${File.separator}webpack-bundle-analyzer", statsFile.get().toString(),
                 distributionDirectory.get().toString(), "--mode", "static", "--report", reportFile.get().toString())
         super.exec()
     }
