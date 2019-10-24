@@ -40,7 +40,7 @@ abstract class BaseWebpackTask : AbstractExecTask<BaseWebpackTask>(BaseWebpackTa
      * we are on a windows OS, otherwise a Unix based OS (based on https://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html).
      */
     fun getWebpackExecutablePath(executableName: String) =
-            "${webpackBinDirectory.get()}${File.separator}$executableName" + if (File.pathSeparatorChar == '\\') ".cmd" else ""
+            "${webpackBinDirectory.get()}${File.separator}$executableName" + if (File.separatorChar == '\\') ".cmd" else ""
 
     init {
         group = "webpack"
