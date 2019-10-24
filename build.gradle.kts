@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "com.ccfraser.gradle"
-version = "0.2"
+version = "0.3"
 description = "A gradle plugin to help with builds related to webpack to try and reduce boilerplate code in build files."
 
 repositories {

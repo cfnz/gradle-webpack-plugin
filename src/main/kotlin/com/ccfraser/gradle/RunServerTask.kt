@@ -10,12 +10,12 @@ open class RunServerTask : BaseWebpackTask() {
 
     override fun exec() {
         if (settings.production) {
-            commandLine("${webpackBinDirectory.get()}${File.separator}webpack-dev-server", "-p", "--config", webpackProdConfigFile.get().toString())
+            commandLine(getWebpackExecutablePath("webpack-dev-server"), "-p", "--config", webpackProdConfigFile.get().toString())
         } else {
             if (settings.webpackDevServerHotReload) {
-                commandLine("${webpackBinDirectory.get()}${File.separator}webpack-dev-server", "--hot", "--config", webpackDevConfigFile.get().toString())
+                commandLine(getWebpackExecutablePath("webpack-dev-server"), "--hot", "--config", webpackDevConfigFile.get().toString())
             } else {
-                commandLine("${webpackBinDirectory.get()}${File.separator}webpack-dev-server", "--config", webpackDevConfigFile.get().toString())
+                commandLine(getWebpackExecutablePath("webpack-dev-server"), "--config", webpackDevConfigFile.get().toString())
             }
         }
         super.exec()

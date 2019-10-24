@@ -9,14 +9,14 @@ open class RunServerOpenBrowserTask : BaseWebpackTask() {
 
     override fun exec() {
         if (settings.production) {
-            commandLine("${webpackBinDirectory.get()}${File.separator}webpack-dev-server", "--open",
+            commandLine(getWebpackExecutablePath("webpack-dev-server"), "--open",
                 "-p", "--config", webpackProdConfigFile.get().toString())
         } else {
             if (settings.webpackDevServerHotReload) {
-                commandLine("${webpackBinDirectory.get()}${File.separator}webpack-dev-server", "--hot", "--open",
+                commandLine(getWebpackExecutablePath("webpack-dev-server"), "--hot", "--open",
                     "--config", webpackDevConfigFile.get().toString())
             } else {
-                commandLine("${webpackBinDirectory.get()}${File.separator}webpack-dev-server", "--open",
+                commandLine(getWebpackExecutablePath("webpack-dev-server"), "--open",
                     "--config", webpackDevConfigFile.get().toString())
             }
         }

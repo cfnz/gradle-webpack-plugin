@@ -15,7 +15,7 @@ open class StatsCreateTask : BaseWebpackTask() {
     override fun exec() {
         // We do use a -p for production, though supposedly the setting in the config overrides it anyway.
         standardOutput = ByteArrayOutputStream()
-        commandLine("${webpackBinDirectory.get()}${File.separator}webpack-cli", "-p",
+        commandLine(getWebpackExecutablePath("webpack-cli"), "-p",
                 "--config", webpackProdConfigFile.get().toString(), "--profile", "--json")
 //        println("commandLine = $commandLine")
 

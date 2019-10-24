@@ -21,7 +21,7 @@ open class StatsDisplayTask : BaseWebpackTask() {
     val reportFile = settings.statsDirTemplate.map { File(settings.convert(it) + "${File.separator}bundle-stats-report.html") }
 
     override fun exec() {
-        commandLine("${webpackBinDirectory.get()}${File.separator}webpack-bundle-analyzer", statsFile.get().toString(),
+        commandLine(getWebpackExecutablePath("webpack-bundle-analyzer"), statsFile.get().toString(),
                 distributionDirectory.get().toString(), "--mode", "static", "--report", reportFile.get().toString())
         super.exec()
     }

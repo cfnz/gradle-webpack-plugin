@@ -10,9 +10,9 @@ open class BuildBundleTask : BaseWebpackTask() {
     override fun exec() {
         if (settings.production) {
             // We do use a -p for production, though supposedly the setting in the config overrides it anyway.
-            commandLine("${webpackBinDirectory.get()}${File.separator}webpack-cli", "-p", "--config", webpackProdConfigFile.get().toString())
+            commandLine(getWebpackExecutablePath("webpack-cli"), "-p", "--config", webpackProdConfigFile.get().toString())
         } else {
-            commandLine("${webpackBinDirectory.get()}${File.separator}webpack-cli", "--config", webpackDevConfigFile.get().toString())
+            commandLine(getWebpackExecutablePath("webpack-cli"), "--config", webpackDevConfigFile.get().toString())
         }
         super.exec()
     }

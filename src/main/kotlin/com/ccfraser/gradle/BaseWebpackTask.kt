@@ -34,6 +34,14 @@ abstract class BaseWebpackTask : AbstractExecTask<BaseWebpackTask>(BaseWebpackTa
     @OutputDirectory
     val jsBundleDirectory = settings.jsBundleDirTemplate.map { File(settings.convert(it)) }
 
+    /**
+     * Windows and Linux/Mac has different executables for webpack, so this just centralises getting the name
+     * of the executable depending on platform. We are just making an assumption that if the path separator is '\' then
+     * we are on a windows OS, otherwise a Unix based OS (based on https://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html).
+     */
+    fun getWebpackExecutablePath(executableName: String) =
+            "${webpackBinDirectory.get()}${File.separator}$executableName" + if (File.pathSeparatorChar == '\\') ".cmd" else ""
+
     init {
         group = "webpack"
     }
